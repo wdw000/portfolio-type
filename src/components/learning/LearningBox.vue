@@ -1,8 +1,14 @@
 <template>
-  <h3>Learning</h3>
-  <ul>
-    <LearningItem v-for="item in learningData" :key="item.title" :data="item" />
-  </ul>
+  <div class="learning-box content-box" id="Learning">
+    <h2>Learning</h2>
+    <ul>
+      <LearningItem
+        v-for="item in learningData"
+        :key="item.title"
+        :data="item"
+      />
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,3 +39,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.learning-box > ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+</style>

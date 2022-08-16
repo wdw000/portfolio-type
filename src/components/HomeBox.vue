@@ -1,5 +1,7 @@
 <template>
-  <h1>WDW's Portfolio</h1>
+  <div class="home-box">
+    <h1 class="hidden">WDW's Portfolio</h1>
+  </div>
   <NavBox />
 </template>
 
@@ -13,4 +15,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.home-box {
+  background-color: var(--item-bg-color);
+}
+</style>

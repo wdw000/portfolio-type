@@ -1,6 +1,9 @@
 <template>
-  <li>
-    <img :src="data.src" :alt="data.title" />
+  <li class="learning-item square">
+    <div class="inner">
+      <h3 class="hidden">{{ data.title }}</h3>
+      <img :src="data.src" :alt="data.title" />
+    </div>
   </li>
 </template>
 
@@ -15,3 +18,12 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.learning-item {
+  margin-bottom: 2%;
+}
+.square {
+  width: 49%;
+}
+</style>

@@ -19,128 +19,26 @@ export default defineComponent({
 </script>
 
 <style>
-body,
-div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-code,
-form,
-fieldset,
-legend,
-textarea,
-p,
-blockquote,
-th,
-td,
-input,
-select,
-textarea,
-button {
-  margin: 0;
-  padding: 0;
+@import "@/assets/css/reset.css";
+@import "@/assets/css/global.css";
+@import "@/assets/css/color.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+* {
+  box-sizing: border-box;
 }
-fieldset,
-img {
-  border: 0 none;
+
+html {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: clamp(13px, 10px + 1vw, 20px);
+  scroll-behavior: smooth;
 }
-dl,
-ul,
-ol,
-menu,
-li {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-input,
-select,
-textarea,
-button {
-  vertical-align: middle;
-}
-button {
-  border: 0 none;
-  background-color: transparent;
-  cursor: pointer;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+
 body {
-  -webkit-text-size-adjust: none;
-} /* 뷰표트 변환시 폰트크기 자동확대 방지 */
-input[type="text"],
-input[type="password"],
-input[type="submit"],
-input[type="search"] {
-  -webkit-appearance: none;
-  border-radius: 0;
+  padding-top: 3.5rem;
 }
-input:checked[type="checkbox"] {
-  background-color: #666;
-  -webkit-appearance: checkbox;
-}
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-input[type="file"] {
-  -webkit-appearance: button;
-  border-radius: 0;
-}
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-body {
-  background: #fff;
-}
-body,
-th,
-td,
-input,
-select,
-textarea,
-button {
-  line-height: 1.5;
-  color: black;
-} /* color값은 디자인가이드에 맞게사용 */
-a {
-  color: #333;
-  text-decoration: none;
-}
-a:active,
-a:hover {
-  text-decoration: none;
-}
-address,
-caption,
-cite,
-code,
-dfn,
-em,
-var {
-  font-style: normal;
-  font-weight: normal;
+
+h2 {
+  text-align: center;
 }
 </style>

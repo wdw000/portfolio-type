@@ -1,8 +1,10 @@
 <template>
-  <h2>Link</h2>
-  <ul>
-    <LinkItem v-for="item in linkData" :key="item.title" :data="item" />
-  </ul>
+  <div class="link-box content-box" id="Link">
+    <h2>Link</h2>
+    <ul>
+      <LinkItem v-for="item in linkData" :key="item.title" :data="item" />
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
@@ -37,3 +39,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.link-box > ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+</style>
