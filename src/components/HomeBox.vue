@@ -18,5 +18,6 @@ export default defineComponent({
 <style scoped>
 .home-box {
   background-color: var(--item-bg-color);
+  height: 40vh;
 }
 </style>

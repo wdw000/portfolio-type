@@ -1,12 +1,17 @@
 <template>
   <li class="about-item">
-    <img :src="require(`@/assets/img/${data.img}`)" alt="icon" />
-    <div v-if="data.type !== 'email'">
+    <div v-if="data.type !== 'email'" class="item-wrap">
+      <img :src="require(`@/assets/img/${data.img}`)" alt="icon" />
       <h3>{{ data.title }}</h3>
       <p v-html="data.value"></p>
     </div>
 
-    <a v-if="data.type === 'email'" :href="`mailto:${data.value}`">
+    <a
+      v-if="data.type === 'email'"
+      :href="`mailto:${data.value}`"
+      class="item-wrap email"
+    >
+      <img :src="require(`@/assets/img/${data.img}`)" alt="icon" />
       <h3 class="open-new-tap">{{ data.title }}</h3>
       <p v-html="data.value"></p>
     </a>
@@ -27,16 +32,16 @@ export default defineComponent({
 
 <style scoped>
 .about-item {
-  display: flex;
-  align-items: center;
   width: 25%;
-  border: solid 1px black;
 }
-
-.about-item > img {
+.item-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-item img {
   width: 3rem;
   height: 3rem;
-  margin-right: 0.5rem;
 }
 
 .about-item h3 {
@@ -44,6 +49,15 @@ export default defineComponent({
 }
 
 .about-item p {
-  font-size: 0.8em;
+  font-size: 0.9em;
+  text-align: center;
+  word-break: break-all;
+}
+
+@media (max-width: 768px) {
+  .about-item {
+    width: 50%;
+    margin-bottom: 1rem;
+  }
 }
 </style>

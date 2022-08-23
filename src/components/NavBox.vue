@@ -1,12 +1,12 @@
 <template>
-  <div class="nav-wrap">
+  <div class="nav-wrap" ref="nav">
     <nav class="nav-box content-box">
       <h2 class="hidden">Portfolio Nav</h2>
-      <p>WDW's Portfolio</p>
+      <p @click="toTop">WDW's Portfolio</p>
 
       <ul>
         <li v-for="item in listData" :key="item">
-          <a :href="`#${item}`">{{ item }}</a>
+          {{ item }}
         </li>
       </ul>
     </nav>
@@ -23,6 +23,7 @@ export default defineComponent({
       listData: ["About Me", "Skills", "Link", "Projects"],
     };
   },
+  methods: {},
 });
 </script>
 

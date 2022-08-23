@@ -9,12 +9,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { SkillData } from "./SkillsBox.vue";
+import { Skills } from "../store";
 
 export default defineComponent({
   name: "SkillItem",
   props: {
-    data: { type: Object as PropType<SkillData>, required: true },
+    data: { type: Object as PropType<Skills>, required: true },
   },
 });
 </script>
@@ -26,5 +26,11 @@ export default defineComponent({
 
 .square {
   width: 32%;
+}
+
+@media (max-width: 435px) {
+  .square {
+    width: 49%;
+  }
 }
 </style>

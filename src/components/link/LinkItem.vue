@@ -13,12 +13,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { LinkData } from "./LinkBox.vue";
+import { Link } from "../store";
 
 export default defineComponent({
   name: "LinkItem",
   props: {
-    data: { type: Object as PropType<LinkData>, required: true },
+    data: { type: Object as PropType<Link>, required: true },
   },
 });
 </script>

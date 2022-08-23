@@ -12,29 +12,17 @@
 </template>
 
 <script lang="ts">
-import { instance } from "@/main";
-import { defineComponent } from "vue";
-import { SkillData } from "../skills/SkillsBox.vue";
+import { defineComponent, PropType } from "vue";
+import { Learning } from "../store";
 import LearningItem from "./LearningItem.vue";
 
 export default defineComponent({
   name: "LearningBox",
   components: { LearningItem },
-  data() {
-    return {
-      learningData: [] as SkillData[],
-    };
-  },
-  created() {
-    this.getData();
-  },
-  methods: {
-    async getData() {
-      const res = await instance.get("learning");
-
-      if (res.statusText === "OK") {
-        this.learningData = res.data;
-      }
+  props: {
+    learningData: {
+      type: Array as PropType<Array<Learning>>,
+      required: true,
     },
   },
 });

@@ -8,40 +8,25 @@
       {{ isMore ? "간략히" : "더보기" }}
     </button>
   </div>
-  <LearningBox />
 </template>
 
 <script lang="ts">
-import { instance } from "@/main";
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import SkillItem from "./SkillItem.vue";
-import LearningBox from "../learning/LearningBox.vue";
-
-export interface SkillData {
-  title: string;
-  src: string;
-}
+import { Skills } from "../store";
 
 export default defineComponent({
   name: "SkillsBox",
-  components: { SkillItem, LearningBox },
+  components: { SkillItem },
+  props: {
+    skillData: { type: Array as PropType<Array<Skills>>, required: true },
+  },
   data() {
     return {
-      skillData: [] as SkillData[],
       isMore: false,
     };
   },
-  created() {
-    this.getData();
-  },
   methods: {
-    async getData() {
-      const res = await instance.get("skills");
-
-      if (res.statusText === "OK") {
-        this.skillData = res.data;
-      }
-    },
     handleMore() {
       this.isMore = !this.isMore;
     },

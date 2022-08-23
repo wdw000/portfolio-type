@@ -9,12 +9,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { SkillData } from "../skills/SkillsBox.vue";
+import { Learning } from "../store";
 
 export default defineComponent({
   name: "LearningItem",
   props: {
-    data: { type: Object as PropType<SkillData>, required: true },
+    data: { type: Object as PropType<Learning>, required: true },
   },
 });
 </script>

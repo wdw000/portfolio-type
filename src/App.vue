@@ -1,8 +1,14 @@
 <template>
-  <HomeBox />
-  <AboutBox />
-  <SkillsBox />
-  <LinkBox />
+  <div v-if="mainStore.status === 'init'">loading</div>
+  <div v-else>
+    <HomeBox />
+    <AboutBox />
+    <SkillsBox :skillData="mainStore.data.skills.data" />
+    <LearningBox :learningData="mainStore.data.learning.data" />
+    <LinkBox :linkData="mainStore.data.link.data" />
+    <ProjectBox :projectData="mainStore.data.project.data" />
+    <FooterBox />
+  </div>
 </template>
 
 <script lang="ts">
@@ -11,10 +17,29 @@ import HomeBox from "./components/HomeBox.vue";
 import AboutBox from "./components/aboutme/AboutBox.vue";
 import SkillsBox from "./components/skills/SkillsBox.vue";
 import LinkBox from "./components/link/LinkBox.vue";
+import { mapStores } from "pinia";
+import { useStore } from "./components/store";
+import LearningBox from "./components/learning/LearningBox.vue";
+import ProjectBox from "./components/project/ProjectBox.vue";
+import FooterBox from "./components/footer/FooterBox.vue";
 
 export default defineComponent({
   name: "App",
-  components: { HomeBox, AboutBox, SkillsBox, LinkBox },
+  components: {
+    HomeBox,
+    AboutBox,
+    SkillsBox,
+    LinkBox,
+    LearningBox,
+    ProjectBox,
+    FooterBox,
+  },
+  computed: {
+    ...mapStores(useStore, ["getState"]),
+  },
+  created() {
+    this.mainStore.setData();
+  },
 });
 </script>
 
@@ -40,5 +65,9 @@ body {
 
 h2 {
   text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: underline;
 }
 </style>

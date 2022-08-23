@@ -1,5 +1,5 @@
 <template>
-  <div class="about-box content-box" id="About Me">
+  <div class="about-box content-box" ref="about_me">
     <h2>About Me</h2>
     <ul>
       <AboutItem v-for="item in listData" :key="item.type" :data="item" />
@@ -39,7 +39,7 @@ export default defineComponent({
         {
           type: "school",
           title: "학력",
-          value: "동양미래대학교",
+          value: "동양미래대학교<br>(컴퓨터정보통신과)",
           img: "school_FILL0_wght400_GRAD0_opsz48.svg",
         },
         {
@@ -51,12 +51,24 @@ export default defineComponent({
       ],
     };
   },
+  methods: {
+    getScrollY() {
+      const target = this.$refs.about_me as HTMLElement;
+      const position = target.offsetTop;
+
+      console.log(position);
+    },
+  },
+  mounted() {
+    this.getScrollY();
+  },
 });
 </script>
 
 <style scoped>
 .about-box > ul {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 </style>
