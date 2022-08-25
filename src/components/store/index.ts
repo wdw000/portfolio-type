@@ -6,11 +6,13 @@ export const useStore = defineStore("main", {
     return {
       status: "init" as "init" | "done",
       data: {
+        aboutMe: { position: 0 },
         skills: { data: [] as Skills[], position: 0 },
         learning: { data: [] as Learning[], position: 0 },
         link: { data: [] as Link[], position: 0 },
-        project: { data: [] as Project[], position: 0 },
+        projects: { data: [] as Project[], position: 0 },
       },
+      currentNav: "Portfolio" as Nav,
     };
   },
 
@@ -53,7 +55,7 @@ export const useStore = defineStore("main", {
           item.functions = JSON.parse(item.functions);
         }
 
-        this.data.project.data = data;
+        this.data.projects.data = data;
       } catch (e) {
         return Promise.reject(e);
       }
@@ -77,10 +79,22 @@ export const useStore = defineStore("main", {
     setPosition(target: Target, offsetHeight: number) {
       this.data[target].position = offsetHeight;
     },
+
+    addPosition(target: Target[], value: number) {
+      for (const item of target) {
+        this.data[item].position += value;
+      }
+    },
+
+    setCurrentNav(current: Nav) {
+      this.currentNav = current;
+    },
   },
 });
 
-export type Target = "skills" | "link" | "learning" | "project";
+export type Target = "skills" | "link" | "learning" | "projects" | "aboutMe";
+
+export type Nav = "Portfolio" | "About Me" | "Skills" | "Link" | "Projects";
 
 export interface Skills {
   title: string;

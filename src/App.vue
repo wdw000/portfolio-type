@@ -6,7 +6,7 @@
     <SkillsBox :skillData="mainStore.data.skills.data" />
     <LearningBox :learningData="mainStore.data.learning.data" />
     <LinkBox :linkData="mainStore.data.link.data" />
-    <ProjectBox :projectData="mainStore.data.project.data" />
+    <ProjectBox :projectData="mainStore.data.projects.data" />
     <FooterBox />
   </div>
 </template>

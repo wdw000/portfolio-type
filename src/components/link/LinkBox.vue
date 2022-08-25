@@ -1,5 +1,5 @@
 <template>
-  <div class="link-box content-box" id="Link">
+  <div class="link-box content-box" ref="link">
     <h2>Link</h2>
     <ul>
       <LinkItem v-for="item in linkData" :key="item.title" :data="item" />
@@ -8,8 +8,10 @@
 </template>
 
 <script lang="ts">
+import { debounce } from "@/lib/functions";
+import { mapStores } from "pinia";
 import { defineComponent, PropType } from "vue";
-import { Link } from "../store";
+import { Link, useStore } from "../store";
 import LinkItem from "./LinkItem.vue";
 
 export default defineComponent({
@@ -20,6 +22,24 @@ export default defineComponent({
       type: Array as PropType<Array<Link>>,
       required: true,
     },
+  },
+  computed: {
+    ...mapStores(useStore),
+  },
+  methods: {
+    setScrollY() {
+      const target = this.$refs.link as HTMLElement;
+      const position = target.offsetTop;
+
+      this.mainStore.setPosition("link", position);
+    },
+  },
+  mounted() {
+    this.setScrollY();
+    window.addEventListener("resize", debounce(this.setScrollY, 250));
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", debounce(this.setScrollY, 250));
   },
 });
 </script>

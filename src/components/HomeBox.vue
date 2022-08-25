@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import NavBox from "./NavBox.vue";
+import NavBox from "./nav/NavBox.vue";
 
 export default defineComponent({
   name: "HomeBox",

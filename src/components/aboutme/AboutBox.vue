@@ -8,7 +8,10 @@
 </template>
 
 <script lang="ts">
+import { debounce } from "@/lib/functions";
+import { mapStores } from "pinia";
 import { defineComponent } from "vue";
+import { useStore } from "../store";
 import AboutItem from "./AboutItem.vue";
 
 export interface AboutProps {
@@ -45,22 +48,29 @@ export default defineComponent({
         {
           type: "email",
           title: "이메일",
-          value: "dowonwang01@gmail.com",
+          value: "dowonwang01@<br>gmail.com",
           img: "mail_FILL0_wght400_GRAD0_opsz48.svg",
         },
       ],
     };
   },
+  computed: {
+    ...mapStores(useStore),
+  },
   methods: {
-    getScrollY() {
+    setScrollY() {
       const target = this.$refs.about_me as HTMLElement;
       const position = target.offsetTop;
 
-      console.log(position);
+      this.mainStore.setPosition("aboutMe", position);
     },
   },
   mounted() {
-    this.getScrollY();
+    this.setScrollY();
+    window.addEventListener("resize", debounce(this.setScrollY, 250));
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", debounce(this.setScrollY, 250));
   },
 });
 </script>

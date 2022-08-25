@@ -25,20 +25,29 @@
       <div class="partition">
         <h4>Link</h4>
         <ul class="link">
-          <li v-if="data.git">
-            <a :href="data.git" target="_blank" rel="noopener noreferrer"
-              >git</a
-            >
+          <li v-if="data.git" class="git">
+            <a :href="data.git" target="_blank" rel="noopener noreferrer">
+              <img src="@/assets/img/github.svg" alt="github" />
+              <p class="open-new-tap">GitHub</p>
+            </a>
           </li>
-          <li v-if="data.web">
-            <a :href="data.web" target="_blank" rel="noopener noreferrer"
-              >web</a
-            >
+          <li v-if="data.web" class="web">
+            <a :href="data.web" target="_blank" rel="noopener noreferrer">
+              <img
+                src="@/assets/img/language_FILL0_wght400_GRAD0_opsz48.svg"
+                alt="web"
+              />
+              <p class="open-new-tap">WEB</p>
+            </a>
           </li>
-          <li v-if="data.pdf">
-            <a :href="data.pdf" target="_blank" rel="noopener noreferrer"
-              >pdf</a
-            >
+          <li v-if="data.pdf" class="">
+            <a :href="data.pdf" target="_blank" rel="noopener noreferrer">
+              <img
+                src="@/assets/img/picture_as_pdf_FILL0_wght400_GRAD0_opsz48.svg"
+                alt="pdf"
+              />
+              <p class="open-new-tap">PDF</p>
+            </a>
           </li>
         </ul>
       </div>
@@ -108,9 +117,26 @@ export default defineComponent({
 
 .link {
   display: flex;
+  margin-left: 1rem;
 }
 
 .link li {
-  margin-left: 1rem;
+  margin-right: 1.5rem;
+}
+
+.link a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link p {
+  font-size: 0.8em;
+}
+
+.link img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
 }
 </style>
