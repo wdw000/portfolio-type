@@ -1,8 +1,16 @@
 <template>
   <div class="project-box content-box" ref="project">
     <h2>Projects</h2>
-    <ul>
+    <ul class="project-big">
       <ProjectItem v-for="item in projectData" :key="item.title" :data="item" />
+    </ul>
+
+    <ul class="project-small">
+      <ProjectSmallItem
+        v-for="item in projectData"
+        :key="item.title"
+        :data="item"
+      />
     </ul>
   </div>
 </template>
@@ -13,6 +21,7 @@ import { mapStores } from "pinia";
 import { defineComponent, PropType } from "vue";
 import { Project, useStore } from "../store";
 import ProjectItem from "./ProjectItem.vue";
+import ProjectSmallItem from "./ProjectSmallItem.vue";
 
 export default defineComponent({
   name: "ProjectBox",
@@ -22,7 +31,7 @@ export default defineComponent({
       required: true,
     },
   },
-  components: { ProjectItem },
+  components: { ProjectItem, ProjectSmallItem },
   computed: {
     ...mapStores(useStore),
   },
@@ -34,14 +43,29 @@ export default defineComponent({
       this.mainStore.setPosition("projects", position);
     },
   },
+  created() {
+    this.setScrollY = debounce(this.setScrollY, 250);
+  },
   mounted() {
     this.setScrollY();
-    window.addEventListener("resize", debounce(this.setScrollY, 250));
+    window.addEventListener("resize", this.setScrollY);
   },
   beforeUnmount() {
-    window.removeEventListener("resize", debounce(this.setScrollY, 250));
+    window.removeEventListener("resize", this.setScrollY);
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@media (max-width: 768px) {
+  .project-big {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .project-small {
+    display: none;
+  }
+}
+</style>

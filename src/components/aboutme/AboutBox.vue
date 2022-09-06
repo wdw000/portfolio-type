@@ -57,6 +57,9 @@ export default defineComponent({
   computed: {
     ...mapStores(useStore),
   },
+  created() {
+    this.setScrollY = debounce(this.setScrollY, 250);
+  },
   methods: {
     setScrollY() {
       const target = this.$refs.about_me as HTMLElement;
@@ -67,10 +70,10 @@ export default defineComponent({
   },
   mounted() {
     this.setScrollY();
-    window.addEventListener("resize", debounce(this.setScrollY, 250));
+    window.addEventListener("resize", this.setScrollY);
   },
   beforeUnmount() {
-    window.removeEventListener("resize", debounce(this.setScrollY, 250));
+    window.removeEventListener("resize", this.setScrollY);
   },
 });
 </script>

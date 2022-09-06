@@ -1,5 +1,5 @@
 <template>
-  <li class="project-item">
+  <li class="project-item" v-scrollAnimation>
     <div class="square">
       <img :src="data.imgSrc" :alt="data.title" class="inner" />
     </div>
@@ -18,7 +18,12 @@
       <div class="partition">
         <h4>Skills</h4>
         <ul class="skills">
-          <li v-for="(item, index) in data.skills" :key="index">{{ item }}</li>
+          <li v-for="(item, index) in data.skills" :key="index">
+            <div class="skill-item">
+              <img :src="mainStore.getSkill(item)?.src" :alt="item" />
+            </div>
+            <p>{{ item }}</p>
+          </li>
         </ul>
       </div>
 
@@ -56,8 +61,9 @@
 </template>
 
 <script lang="ts">
+import { mapStores } from "pinia";
 import { defineComponent, PropType } from "vue";
-import { Project } from "../store";
+import { Project, useStore } from "../store";
 
 export default defineComponent({
   name: "ProjectItem",
@@ -66,6 +72,9 @@ export default defineComponent({
       type: Object as PropType<Project>,
       required: true,
     },
+  },
+  computed: {
+    ...mapStores(useStore),
   },
 });
 </script>
@@ -81,14 +90,14 @@ export default defineComponent({
 }
 
 .content {
-  flex: 1.1;
+  flex: 1;
   padding: 1rem 2rem;
   background-color: var(--item-bg-color);
 }
 
 .content h3 {
   text-align: center;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px;
   padding-bottom: 0.5rem;
   font-weight: bold;
 }
@@ -109,10 +118,32 @@ export default defineComponent({
 
 .skills {
   display: flex;
+  flex-wrap: wrap;
+  margin-left: 1rem;
 }
 
 .skills li {
-  margin-left: 1rem;
+  margin: 0.3rem 0;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.skills p {
+  font-size: 0.7rem;
+  margin: 0 0.5rem;
+}
+
+.skill-item {
+  display: flex;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.skill-item > img {
+  width: 100%;
+  object-fit: contain;
+  padding: 0.2rem;
 }
 
 .link {
@@ -135,8 +166,9 @@ export default defineComponent({
 }
 
 .link img {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   object-fit: cover;
+  filter: var(--icon-invert);
 }
 </style>

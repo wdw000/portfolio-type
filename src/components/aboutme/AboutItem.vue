@@ -3,7 +3,7 @@
     <div v-if="data.type !== 'email'" class="item-wrap">
       <img :src="require(`@/assets/img/${data.img}`)" alt="icon" />
       <h3>{{ data.title }}</h3>
-      <p v-html="data.value"></p>
+      <p v-html="data.value" v-scrollAnimation></p>
     </div>
 
     <a
@@ -12,8 +12,10 @@
       class="item-wrap email"
     >
       <img :src="require(`@/assets/img/${data.img}`)" alt="icon" />
-      <h3 class="open-new-tap">{{ data.title }}</h3>
-      <p v-html="data.value"></p>
+      <h3 class="open-new-tap">
+        {{ data.title }}
+      </h3>
+      <p v-html="data.value" v-scrollAnimation></p>
     </a>
   </li>
 </template>
@@ -42,6 +44,7 @@ export default defineComponent({
 .about-item img {
   width: 3rem;
   height: 3rem;
+  filter: var(--icon-invert);
 }
 
 .about-item h3 {

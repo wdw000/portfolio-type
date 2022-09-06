@@ -4,7 +4,7 @@
       <h2 class="hidden">Portfolio Nav</h2>
       <p @click="toTop">WDW's {{ mainStore.currentNav }}</p>
 
-      <ul>
+      <ul class="nav-big">
         <li
           v-for="item in listData"
           :key="item"
@@ -12,6 +12,9 @@
           @click="moveTo(item)"
         >
           {{ item }}
+        </li>
+        <li>
+          <DarkMode />
         </li>
       </ul>
     </nav>
@@ -26,6 +29,7 @@ import { mapStores } from "pinia";
 import { defineComponent } from "vue";
 import { Target, useStore } from "../store";
 import NavSmall from "./NavSmall.vue";
+import DarkMode from "../DarkMode.vue";
 
 export default defineComponent({
   name: "NavBox",
@@ -34,15 +38,18 @@ export default defineComponent({
       listData: ["About Me", "Skills", "Link", "Projects"],
     };
   },
-  components: { NavSmall },
+  components: { NavSmall, DarkMode },
   computed: {
     ...mapStores(useStore),
   },
-  mounted() {
-    window.addEventListener("scroll", debounce(this.setCurrentNav, 250));
+  created() {
+    this.setCurrentNav = debounce(this.setCurrentNav, 250);
   },
-  unmounted() {
-    window.removeEventListener("scroll", debounce(this.setCurrentNav, 250));
+  mounted() {
+    window.addEventListener("scroll", this.setCurrentNav);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.setCurrentNav);
   },
   methods: {
     toCamelCase(str: string) {
@@ -92,14 +99,14 @@ export default defineComponent({
 
 <style scoped>
 .nav-wrap {
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px var(--nav-underline-color);
   display: flex;
   align-items: center;
   position: fixed;
   width: 100%;
   height: 3.5rem;
   top: 0;
-  background-color: white;
+  background-color: var(--nav-bg-color);
   z-index: 100;
 }
 .nav-box {
@@ -109,14 +116,14 @@ export default defineComponent({
   padding: 0 1rem;
 }
 
-.nav-box > ul {
+.nav-big {
   display: flex;
-  color: black;
   font-weight: bold;
+  align-items: center;
 }
 
 .on {
-  color: red;
+  text-decoration: underline;
 }
 
 .nav-box li {

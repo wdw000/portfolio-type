@@ -48,4 +48,5 @@
   background-repeat: no-repeat;
   background-size: contain;
   margin-left: 5px;
+  filter: var(--icon-invert);
 }

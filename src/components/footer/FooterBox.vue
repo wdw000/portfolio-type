@@ -34,8 +34,8 @@ export default defineComponent({
 
 <style scoped>
 .footer-wrap {
-  background-color: #0f0f0f;
-  color: white;
+  background-color: var(--footer-bg-color);
+  color: var(--footer-font-color);
 }
 .footer-box {
   display: flex;
@@ -55,7 +55,7 @@ export default defineComponent({
   margin-top: 1rem;
 }
 .icon {
-  background-color: white;
+  background-color: var(--footer-icon-bg-color);
   width: 3rem;
   height: 3rem;
   padding: 0.1rem;

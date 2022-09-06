@@ -1,6 +1,8 @@
 <template>
-  <div v-if="mainStore.status === 'init'">loading</div>
-  <div v-else>
+  <div v-if="mainStore.status === 'init'">
+    <LoadingSpinner />
+  </div>
+  <div class="main" v-else>
     <HomeBox />
     <AboutBox />
     <SkillsBox :skillData="mainStore.data.skills.data" />
@@ -22,6 +24,7 @@ import { useStore } from "./components/store";
 import LearningBox from "./components/learning/LearningBox.vue";
 import ProjectBox from "./components/project/ProjectBox.vue";
 import FooterBox from "./components/footer/FooterBox.vue";
+import LoadingSpinner from "./components/loading/LoadingSpinner.vue";
 
 export default defineComponent({
   name: "App",
@@ -33,6 +36,7 @@ export default defineComponent({
     LearningBox,
     ProjectBox,
     FooterBox,
+    LoadingSpinner,
   },
   computed: {
     ...mapStores(useStore, ["getState"]),
@@ -47,6 +51,7 @@ export default defineComponent({
 @import "@/assets/css/reset.css";
 @import "@/assets/css/global.css";
 @import "@/assets/css/color.css";
+@import "@/assets/css/trasition.css";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 * {
@@ -59,7 +64,7 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+.main > body {
   padding-top: 3.5rem;
 }
 

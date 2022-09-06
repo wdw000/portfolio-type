@@ -2,7 +2,7 @@
   <li class="skill-item square">
     <div class="inner">
       <h3 class="hidden">{{ data.title }}</h3>
-      <img :src="data.src" :alt="data.title" />
+      <img :src="data.src" :alt="data.title" v-scrollAnimation />
     </div>
   </li>
 </template>

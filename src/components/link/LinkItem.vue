@@ -3,7 +3,7 @@
     <a :href="data.imgURL" target="_blank">
       <div class="square">
         <div class="inner">
-          <img :src="data.imgSrc" :alt="data.title" />
+          <img :src="data.imgSrc" :alt="data.title" v-scrollAnimation />
         </div>
       </div>
       <h3 class="open-new-tap">{{ data.title }}</h3>

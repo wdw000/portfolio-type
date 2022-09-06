@@ -1,3 +1,73 @@
-:root {
+html {
+  /* body */
+  --body-bg-color: #fafafa;
+
+  /* button */
+  --btn-font-color: #000000;
+
+  /* a tag */
+  --a-font-color: #000000;
+
+  /* square */
   --item-bg-color: #f0f0f0;
+
+  /* nav */
+  --nav-underline-color: lightgray;
+  --nav-bg-color: #fafafa;
+  --nav-checked-color: #f0f0f0;
+  --nav-shadow: 0px 5px 5px gray;
+
+  /* loading */
+  --loading-color: #000000;
+
+  /* project */
+  --project-more-bg-color: #fafafa;
+  --project-img-bg-color: #fafafa;
+
+  /* footer */
+  --footer-bg-color: #0f0f0f;
+  --footer-font-color: #fafafa;
+  --footer-icon-bg-color: #fafafa;
+
+  /* dark mode */
+  --dark-mode-bg-color: lightgray;
+  --dark-mode-toggle-color: #fafafa;
+}
+
+html.dark {
+  --icon-invert: invert(100%);
+  --font-color: #fafafa;
+  /* body */
+  --body-bg-color: #1c1c1c;
+
+  /* button */
+  --btn-font-color: #fafafa;
+
+  /* a tag */
+  --a-font-color: #fafafa;
+
+  /* square */
+  --item-bg-color: #343434;
+
+  /* nav */
+  --nav-underline-color: #fafafa;
+  --nav-bg-color: #121212;
+  --nav-checked-color: #343434;
+  --nav-shadow: none;
+
+  /* loading */
+  --loading-color: #fafafa;
+
+  /* project */
+  --project-more-bg-color: #444444;
+  --project-img-bg-color: #fafafa;
+
+  /* footer */
+  --footer-bg-color: #121212;
+  --footer-font-color: #fafafa;
+  --footer-icon-bg-color: #fafafa;
+
+  /* dark mode */
+  --dark-mode-bg-color: lightgray;
+  --dark-mode-toggle-color: #fafafa;
 }

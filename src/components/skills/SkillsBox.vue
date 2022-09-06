@@ -1,9 +1,11 @@
 <template>
   <div class="skills-box content-box" id="Skills" ref="skills">
     <h2>Skills</h2>
+
     <ul :class="{ more: isMore, short: !isMore }">
       <SkillItem v-for="item in skillData" :key="item.title" :data="item" />
     </ul>
+
     <button v-if="isMoreSix" @click="handleMore" class="more-btn">
       {{ isMore ? "간략히" : "더보기" }}
     </button>
@@ -51,12 +53,15 @@ export default defineComponent({
       this.height = target.offsetHeight;
     },
   },
+  created() {
+    this.setScrollY = debounce(this.setScrollY, 250);
+  },
   mounted() {
     this.setScrollY();
-    window.addEventListener("resize", debounce(this.setScrollY, 250));
+    window.addEventListener("resize", this.setScrollY);
   },
   beforeUnmount() {
-    window.removeEventListener("resize", debounce(this.setScrollY, 250));
+    window.removeEventListener("resize", this.setScrollY);
   },
   updated() {
     this.setHeight();
@@ -90,6 +95,6 @@ export default defineComponent({
 .more-btn {
   display: block;
   margin: 0 auto;
-  border-bottom: solid black 1px;
+  border-bottom: solid 0.15rem;
 }
 </style>

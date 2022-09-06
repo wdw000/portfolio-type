@@ -34,12 +34,15 @@ export default defineComponent({
       this.mainStore.setPosition("link", position);
     },
   },
+  created() {
+    this.setScrollY = debounce(this.setScrollY, 250);
+  },
   mounted() {
     this.setScrollY();
-    window.addEventListener("resize", debounce(this.setScrollY, 250));
+    window.addEventListener("resize", this.setScrollY);
   },
   beforeUnmount() {
-    window.removeEventListener("resize", debounce(this.setScrollY, 250));
+    window.removeEventListener("resize", this.setScrollY);
   },
 });
 </script>

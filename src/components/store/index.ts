@@ -16,6 +16,13 @@ export const useStore = defineStore("main", {
     };
   },
 
+  getters: {
+    getSkill: (state) => {
+      return (title: string) =>
+        state.data.skills.data.find((item) => item.title === title);
+    },
+  },
+
   actions: {
     async setSkills() {
       try {
@@ -72,7 +79,7 @@ export const useStore = defineStore("main", {
       if (data) {
         setTimeout(() => {
           this.status = "done";
-        }, 200);
+        }, 1000);
       }
     },
 
