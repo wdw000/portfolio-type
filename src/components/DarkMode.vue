@@ -4,40 +4,27 @@
       type="checkbox"
       id="dark-mode"
       class="toggle"
-      :checked="darkMode"
+      v-model="mainStore.darkMode"
       hidden
     />
-    <label for="dark-mode" class="toggleSwitch" @click="handleInput">
+    <label for="dark-mode" class="toggleSwitch">
       <span class="toggleBtn"></span>
     </label>
   </div>
 </template>
 
 <script lang="ts">
+import { mapStores } from "pinia";
 import { defineComponent } from "vue";
+import { useStore } from "./store";
 
 export default defineComponent({
   name: "DarkMode",
-  data() {
-    return {
-      darkMode: false,
-    };
+  computed: {
+    ...mapStores(useStore),
   },
-  created() {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      this.darkMode = true;
-      document.documentElement.classList.toggle("dark", this.darkMode);
-    }
-  },
-  methods: {
-    handleInput() {
-      this.darkMode = !this.darkMode;
-    },
-  },
-  watch: {
-    darkMode() {
-      document.documentElement.classList.toggle("dark", this.darkMode);
-    },
+  updated() {
+    document.documentElement.classList.toggle("dark", this.mainStore.darkMode);
   },
 });
 </script>

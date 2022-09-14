@@ -13,6 +13,7 @@ export const useStore = defineStore("main", {
         projects: { data: [] as Project[], position: 0 },
       },
       currentNav: "Portfolio" as Nav,
+      darkMode: false,
     };
   },
 
@@ -95,6 +96,10 @@ export const useStore = defineStore("main", {
 
     setCurrentNav(current: Nav) {
       this.currentNav = current;
+    },
+
+    setDarkMode(value: boolean) {
+      this.darkMode = value;
     },
   },
 });

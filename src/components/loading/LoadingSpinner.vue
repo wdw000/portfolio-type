@@ -3,12 +3,18 @@
 </template>
 
 <script lang="ts">
+import { mapStores } from "pinia";
 import { defineComponent } from "vue";
+import { useStore } from "../store";
 
 export default defineComponent({
   name: "LoadingSpinner",
+  computed: {
+    ...mapStores(useStore),
+  },
   created() {
     const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    this.mainStore.setDarkMode(darkMode);
     if (darkMode) {
       document.documentElement.classList.toggle("dark", darkMode);
     }
