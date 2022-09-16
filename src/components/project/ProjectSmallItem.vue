@@ -1,14 +1,16 @@
 <template>
-  <li class="project-small-item" v-scrollAnimation>
-    <h3>{{ data.title }}</h3>
-    <div :class="isMore ? 'item-box' : 'item'">
-      <img
-        v-if="!isMore"
-        :src="data.imgSrc"
-        :alt="data.title"
-        class="item-inner"
-      />
-      <div v-else class="project-more">
+  <li class="project-small-item">
+    <div class="project-wrap">
+      <div class="project-img-box" ref="img">
+        <img
+          v-scrollAnimation
+          class="project-img"
+          :src="data.imgSrc"
+          :alt="data.title"
+        />
+      </div>
+      <div v-if="isMore" class="project-content">
+        <h3 class="title">{{ data.title }}</h3>
         <div class="partition">
           <h4>Functions</h4>
           <ul class="functions" v-scrollAnimation>
@@ -22,7 +24,7 @@
           <h4>Skills</h4>
           <ul class="skills" v-scrollAnimation>
             <li v-for="(item, index) in data.skills" :key="index">
-              <div class="skill-item">
+              <div class="skill-icon">
                 <img :src="mainStore.getSkill(item)?.src" :alt="item" />
               </div>
               <p>{{ item }}</p>
@@ -33,13 +35,14 @@
         <div class="partition">
           <h4>Link</h4>
           <ul class="link" v-scrollAnimation>
-            <li v-if="data.git" class="git">
+            <li v-if="data.git">
               <a :href="data.git" target="_blank" rel="noopener noreferrer">
                 <img src="@/assets/img/github.svg" alt="github" />
                 <p class="open-new-tap">GitHub</p>
               </a>
             </li>
-            <li v-if="data.web" class="web">
+
+            <li v-if="data.web">
               <a :href="data.web" target="_blank" rel="noopener noreferrer">
                 <img
                   src="@/assets/img/language_FILL0_wght400_GRAD0_opsz48.svg"
@@ -48,7 +51,8 @@
                 <p class="open-new-tap">WEB</p>
               </a>
             </li>
-            <li v-if="data.pdf" class="">
+
+            <li v-if="data.pdf">
               <a :href="data.pdf" target="_blank" rel="noopener noreferrer">
                 <img
                   src="@/assets/img/picture_as_pdf_FILL0_wght400_GRAD0_opsz48.svg"
@@ -60,8 +64,10 @@
           </ul>
         </div>
       </div>
+      <button @click="handleMore" class="more-btn">
+        {{ isMore ? "간략히" : "자세히" }}
+      </button>
     </div>
-    <button @click="handleMore">{{ isMore ? "간략히" : "자세히" }}</button>
   </li>
 </template>
 
@@ -95,100 +101,96 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.project-small-item {
-  background-color: var(--item-bg-color);
-}
-.project-small-item h3 {
-  text-align: center;
-  padding: 0.5rem;
-}
-
-.project-small-item > button {
-  display: block;
-  margin: 0 auto;
-  padding: 0.5rem;
-  text-decoration: underline;
-}
-
-.item-box {
-  width: 80%;
-  background-color: var(--project-more-bg-color);
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.item {
-  width: 80%;
+/* img */
+.project-img-box {
   position: relative;
   background-color: var(--project-img-bg-color);
-  margin: 0 auto;
 }
 
-.item::after {
-  content: "";
+.project-img-box::after {
   display: block;
+  content: "";
   padding-bottom: 100%;
 }
 
-.item-inner {
+.project-img {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.project-more > .partition:not(:last-child) {
-  margin-bottom: 1rem;
+/* content */
+.project-small-item {
+  margin-bottom: 2rem;
 }
 
-.partition h4 {
-  margin-bottom: 0.5rem;
+.project-wrap {
+  background-color: var(--item-bg-color);
+  padding: 5%;
+}
+
+.project-content {
+  background-color: var(--project-more-bg-color);
+  height: fit-content;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: solid 0.1rem;
+  padding-bottom: 1rem;
   font-weight: bold;
 }
 
-.functions li {
-  margin-left: 1rem;
-  list-style: inside;
+.partition {
+  margin: 1rem 0;
 }
 
+.partition > h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.partition > ul {
+  margin-left: 1rem;
+}
+
+.partition li {
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.functions li {
+  list-style: inside;
+}
 .skills {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 1rem;
+  justify-content: space-around;
 }
 
-.skills li {
-  margin: 0.3rem 0;
-  margin-right: 1rem;
+.skills > li {
   display: flex;
-  align-items: center;
 }
 
-.skills p {
-  font-size: 0.7rem;
-  margin: 0 0.5rem;
+.skill-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.3rem;
 }
 
-.skill-item {
-  display: flex;
-  width: 1.8rem;
-  height: 1.8rem;
-}
-
-.skill-item > img {
+.skill-icon > img {
   width: 100%;
+  height: 100%;
   object-fit: contain;
-  padding: 0.2rem;
 }
 
 .link {
   display: flex;
-  margin-left: 1rem;
-}
-
-.link li {
-  margin-right: 1.5rem;
 }
 
 .link a {
@@ -197,13 +199,19 @@ export default defineComponent({
   align-items: center;
 }
 
-.link p {
-  font-size: 0.8em;
+.link img {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.2rem;
+  filter: var(--icon-invert);
 }
 
-.link img {
-  width: 2.5rem;
-  height: 2.5rem;
-  object-fit: cover;
+.more-btn {
+  font-size: 1.2rem;
+  margin: 0 auto;
+  display: block;
+  text-decoration: underline;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 </style>

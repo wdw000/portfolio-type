@@ -89,6 +89,11 @@ export default defineComponent({
   flex: 1;
 }
 
+.inner {
+  background-color: var(--project-img-bg-color);
+  padding: 1rem;
+}
+
 .content {
   flex: 1;
   padding: 1rem 2rem;
@@ -124,7 +129,7 @@ export default defineComponent({
 
 .skills li {
   margin: 0.3rem 0;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   display: flex;
   align-items: center;
 }
