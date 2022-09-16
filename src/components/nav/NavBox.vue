@@ -2,13 +2,14 @@
   <div class="nav-wrap" ref="nav">
     <nav class="nav-box content-box">
       <h2 class="hidden">Portfolio Nav</h2>
-      <p @click="toTop">WDW's {{ mainStore.currentNav }}</p>
+      <p @click="toTop" class="click">WDW's {{ mainStore.currentNav }}</p>
 
       <ul class="nav-big">
         <li
           v-for="item in listData"
           :key="item"
           :class="{ on: mainStore.currentNav === item }"
+          class="click"
           @click="moveTo(item)"
         >
           {{ item }}

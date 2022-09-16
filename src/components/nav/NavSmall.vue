@@ -2,7 +2,9 @@
   <nav class="content-box nav-small" ref="navSmall">
     <h2 class="hidden">Portfolio Small Nav</h2>
     <div>
-      <p @click="$emit('toTop')">WDW's {{ mainStore.currentNav }}</p>
+      <p class="click" @click="$emit('toTop')">
+        WDW's {{ mainStore.currentNav }}
+      </p>
       <button class="menu-btn" @click="handleMore">
         <img src="@/assets/img/menu_FILL0_wght400_GRAD0_opsz48.svg" alt="" />
       </button>
@@ -15,6 +17,7 @@
           :key="item"
           @click="handleListClick(item)"
           :class="{ on: mainStore.currentNav === item }"
+          class="click"
         >
           {{ item }}
         </li>
