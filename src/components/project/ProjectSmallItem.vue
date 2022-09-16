@@ -9,61 +9,63 @@
           :alt="data.title"
         />
       </div>
-      <div v-if="isMore" class="project-content">
-        <h3 class="title">{{ data.title }}</h3>
-        <div class="partition">
-          <h4>Functions</h4>
-          <ul class="functions" v-scrollAnimation>
-            <li v-for="(item, index) in data.functions" :key="index">
-              {{ item }}
-            </li>
-          </ul>
+      <transition name="slide">
+        <div v-if="isMore" class="project-content">
+          <h3 class="title">{{ data.title }}</h3>
+          <div class="partition">
+            <h4>Functions</h4>
+            <ul class="functions" v-scrollAnimation>
+              <li v-for="(item, index) in data.functions" :key="index">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="partition">
+            <h4>Skills</h4>
+            <ul class="skills" v-scrollAnimation>
+              <li v-for="(item, index) in data.skills" :key="index">
+                <div class="skill-icon">
+                  <img :src="mainStore.getSkill(item)?.src" :alt="item" />
+                </div>
+                <p>{{ item }}</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="partition">
+            <h4>Link</h4>
+            <ul class="link" v-scrollAnimation>
+              <li v-if="data.git">
+                <a :href="data.git" target="_blank" rel="noopener noreferrer">
+                  <img src="@/assets/img/github.svg" alt="github" />
+                  <p class="open-new-tap">GitHub</p>
+                </a>
+              </li>
+
+              <li v-if="data.web">
+                <a :href="data.web" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="@/assets/img/language_FILL0_wght400_GRAD0_opsz48.svg"
+                    alt="web"
+                  />
+                  <p class="open-new-tap">WEB</p>
+                </a>
+              </li>
+
+              <li v-if="data.pdf">
+                <a :href="data.pdf" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="@/assets/img/picture_as_pdf_FILL0_wght400_GRAD0_opsz48.svg"
+                    alt="pdf"
+                  />
+                  <p class="open-new-tap">PDF</p>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <div class="partition">
-          <h4>Skills</h4>
-          <ul class="skills" v-scrollAnimation>
-            <li v-for="(item, index) in data.skills" :key="index">
-              <div class="skill-icon">
-                <img :src="mainStore.getSkill(item)?.src" :alt="item" />
-              </div>
-              <p>{{ item }}</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="partition">
-          <h4>Link</h4>
-          <ul class="link" v-scrollAnimation>
-            <li v-if="data.git">
-              <a :href="data.git" target="_blank" rel="noopener noreferrer">
-                <img src="@/assets/img/github.svg" alt="github" />
-                <p class="open-new-tap">GitHub</p>
-              </a>
-            </li>
-
-            <li v-if="data.web">
-              <a :href="data.web" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="@/assets/img/language_FILL0_wght400_GRAD0_opsz48.svg"
-                  alt="web"
-                />
-                <p class="open-new-tap">WEB</p>
-              </a>
-            </li>
-
-            <li v-if="data.pdf">
-              <a :href="data.pdf" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="@/assets/img/picture_as_pdf_FILL0_wght400_GRAD0_opsz48.svg"
-                  alt="pdf"
-                />
-                <p class="open-new-tap">PDF</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </transition>
       <button @click="handleMore" class="more-btn">
         {{ isMore ? "간략히" : "자세히" }}
       </button>
