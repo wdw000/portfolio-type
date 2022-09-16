@@ -4,6 +4,13 @@
 
     <ul :class="{ more: isMore, short: !isMore }">
       <SkillItem v-for="item in skillData" :key="item.title" :data="item" />
+      <li v-for="n in cntRemainder" :key="n" class="square">
+        <img
+          src="@/assets/img/sentiment_very_satisfied_FILL0_wght400_GRAD0_opsz48.svg"
+          alt="prepare"
+          class="inner"
+        />
+      </li>
     </ul>
 
     <button v-if="isMoreSix" @click="handleMore" class="more-btn">
@@ -35,6 +42,13 @@ export default defineComponent({
     ...mapStores(useStore),
     isMoreSix() {
       return this.skillData.length > 6;
+    },
+    cntRemainder() {
+      if (this.skillData.length % 3 === 0) {
+        return 0;
+      } else {
+        return 3 - (this.skillData.length % 3);
+      }
     },
   },
   methods: {
@@ -96,5 +110,14 @@ export default defineComponent({
   display: block;
   margin: 0 auto;
   border-bottom: solid 0.15rem;
+}
+
+.square {
+  margin-bottom: 2%;
+  width: 32%;
+}
+
+.inner {
+  filter: var(--icon-invert);
 }
 </style>

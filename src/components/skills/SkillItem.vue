@@ -27,10 +27,4 @@ export default defineComponent({
 .square {
   width: 32%;
 }
-
-@media (max-width: 435px) {
-  .square {
-    width: 49%;
-  }
-}
 </style>
