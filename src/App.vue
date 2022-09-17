@@ -51,7 +51,7 @@ export default defineComponent({
 @import "@/assets/css/reset.css";
 @import "@/assets/css/global.css";
 @import "@/assets/css/color.css";
-@import "@/assets/css/trasition.css";
+@import "@/assets/css/transition.css";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 * {
