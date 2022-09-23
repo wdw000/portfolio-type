@@ -1,8 +1,8 @@
 # portfolio-type
 
-##[BACKEND](https://github.com/wdw000/nest-portfolio)
+## [BACKEND](https://github.com/wdw000/nest-portfolio)
 
-##[서비스링크](https://wangdo.site)
+## [서비스링크](https://wangdo.site)
 
 ## Create .env
 ```
