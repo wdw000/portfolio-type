@@ -1,4 +1,4 @@
-# portfolio-type
+# Portfolio
 
 ## [BACKEND](https://github.com/wdw000/nest-portfolio)
 
