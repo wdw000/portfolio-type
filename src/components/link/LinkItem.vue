@@ -26,6 +26,7 @@ export default defineComponent({
 <style scoped>
 .link-item {
   width: 20%;
+  margin: 0 1rem;
   margin-bottom: 1rem;
 }
 .square {
